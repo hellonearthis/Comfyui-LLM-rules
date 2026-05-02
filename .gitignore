@@ -1,0 +1,23 @@
+# Windows system files
+desktop.ini
+Thumbs.db
+
+# Environment files
+.venv/
+env/
+venv/
+*.env
+
+# Python artifacts
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# ComfyUI logs
+comfyui.log
+*.log
+
+# Workspace specific
+.gemini/
+.agents/rules/.tmp/

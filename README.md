@@ -1,55 +1,64 @@
 # ComfyUI LLM Development Guide
 
+---
+
+## ⚡ Quick Start: Use this with your AI Assistant
+To get the best results, tell your AI agent which mode you need by copying one of these commands:
+
+**For Development (Coding, Nodes, UI):**
+> "Reference `DEVELOPMENT.md` and follow the coding protocols for this task."
+
+**For Support (Troubleshooting, Hardware, Environment):**
+> "Reference `SUPPORT.md` and perform a pre-flight hardware check."
+
+---
+
 Welcome to the ComfyUI LLM Guide repository. This workspace contains a strict, token-dense set of protocols designed specifically for AI Agents to follow when assisting with ComfyUI workflow execution, custom node development, and backend architecture.
 
 ## 🚀 Antigravity Tuning & System Architecture
 
 This workspace has been explicitly tuned for **Agentic RAG** and the Antigravity router.
 
-- **YAML Frontmatter:** Every module in the `.agents/rules/` directory is equipped with a strict `name:` and `description:` YAML block at the top.
-- **Automatic Indexing:** The router parses these `description:` blocks to understand precisely _when_ to load a specific rule.
-- **Context Efficiency:** This architecture prevents the agent from dumping 12,000 words of documentation into its context window, allowing it to pull only the specific 500-1000 tokens required for the immediate task.
+- **Dual-Mode Orchestration:** Choose between **Development** and **Support** modes to align the AI's behavior with your current task.
+- **Modular Directory Structure:** Rules are organized into `.agents/coding/`, `.agents/support/`, and `.agents/common/` to ensure high-precision context loading.
+- **Context Efficiency:** This architecture prevents the agent from dumping excessive documentation into its context window, pulling only the specific tokens required.
 
-## 🧠 Agent Routing Instructions
+## 🧠 Mode Selection (How to Choose)
 
-**To AI Agents reading this:** The Antigravity system may auto-load rules based on their YAML frontmatter. However, if you are exploring the repository manually, DO NOT load all files in the `.agents/rules/` directory at once. Use the table of contents below to determine exactly which protocol is relevant to the user's current request, and `view_file` on that specific module.
+Before starting a task, you should tell the AI which mode to operate in by referencing the corresponding orchestration file:
 
-### Directory: `/.agents/rules`
+### 🛠️ Development Mode
+**Target:** Coding, Node Architecture, Frontend Development, Logic Execution.
+- **How to activate:** Say "Load Development Mode" or "Reference DEVELOPMENT.md".
+- **Focus:** Building new features, writing Python/JS, optimizing performance.
 
-#### Foundational Execution & Routing
+### 🛡️ Support Mode
+**Target:** Troubleshooting, Environment Setup, Hardware Compatibility, Maintenance.
+- **How to activate:** Say "Load Support Mode" or "Reference SUPPORT.md".
+- **Focus:** Fixing crashes, managing dependencies, configuring GPUs (RTX 50-series).
 
-- `preflight-environment.md` — Hardware alignment, VRAM safeguards, and venv setup.
-- `discovery-protocol.md` — The search-first mandate and trigger word extraction.
-- `task-routing.md` — The routing table and exact CLI syntax for T2I/I2I/Video.
+---
 
-#### Assets, Inputs, & Sharing
+## 📂 Rule Architecture
 
-- `asset-auth.md` — URI priorities, Civitai/HF authentication, and Format Translation.
-- `inputs-handling.md` — Handling image URLs, PNG embedded workflows, and WebFetch scraping.
-- `workflow-sharing.md` — Converting UI workflows to API JSON and sharing via `uvx`.
+### Directory: `/.agents/coding`
+Rules for building and architecting ComfyUI nodes and logic.
+- `api-node-dev.md`, `coding-style.md`, `frontend-litegraph-dev.md`, `inputs-handling.md`, `workflow-architecture.md`, `scaling-automation.md`, `asset-auth.md`.
 
-#### Automation & Scaling
+### Directory: `/.agents/support`
+Rules for environment safety, hardware alignment, and troubleshooting.
+- `preflight-environment.md`, `troubleshooting.md`, `dependency-management.md`, `security-hygiene.md`, `vendor-prompting.md`, `workflow-sharing.md`.
 
-- `scaling-automation.md` — Daemon processing and Python embedded client logic (CSV loops).
-
-- `troubleshooting.md` — Startup sequence analysis, DLL/Dependency debugging, OOM resolution, and the Developer Escape hatch.
-- `dependency-management.md` — Resolving dependency oscillation loops, ABI mismatches, and the Torch/CUDA compatibility matrix.
-- `security-hygiene.md` — Custom node security auditing, API key safety, and workflow organization (anti-spaghetti).
-- `vendor-prompting.md` — The authoritative index of official vendor prompting URLs (Flux, Wan, LTX, etc.).
-
-#### Pro-Level Development & Architecture
-
-- `coding-style.md` — Global coding style, variable naming, linting mandates, and MRE creation.
-- `workflow-architecture.md` — Graph primitive decoupling, logic grouping, and modular loaders.
-- `api-node-dev.md` — Headless websocket integration, interrupt strategies, and backend custom node class rules.
-- `frontend-litegraph-dev.md` — Frontend node development, LiteGraph widget handling, and Vue integration.
+### Directory: `/.agents/common`
+Shared infrastructure and discovery protocols.
+- `discovery-protocol.md`, `task-routing.md`.
 
 ## 🛠️ Installation & Setup (Antigravity)
 
 To integrate these rules into your Antigravity environment:
 
 1. **Workspace Registration:** Open this folder (`Comfyui LLM`) in your local IDE where the Antigravity extension is active.
-2. **Indexing:** Antigravity will automatically index the `.agents/rules/` directory based on the YAML frontmatter in each file.
+2. **Indexing:** Antigravity will automatically index the `.agents/` directory.
 3. **Settings:**
    - **Context Level:** Ensure "Agentic RAG" or "Rule Indexing" is enabled in your Antigravity settings.
    - **Triggering:** The agent will selectively load rules based on your request. You can also explicitly invoke a rule by mentioning its name (e.g., "Follow the preflight environment protocol").
@@ -57,7 +66,7 @@ To integrate these rules into your Antigravity environment:
 
 ## 🤖 Compatibility with Other AI Tools
 
-While this repository is optimized for Antigravity via `GEMINI.md`, the modular rules in `.agents/rules/` are compatible with several other AI coding assistants.
+While this repository is optimized for Antigravity via `GEMINI.md`, the modular rules in `.agents/` are compatible with several other AI coding assistants.
 
 ### Supported Tool Mappings
 If you use multiple AI tools, you can point them to these rules by creating or symlinking the following files at the root:

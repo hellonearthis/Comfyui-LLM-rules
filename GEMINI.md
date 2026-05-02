@@ -1,26 +1,28 @@
-# Antigravity Global Context: ComfyUI LLM
+# Antigravity Rules Registry: ComfyUI LLM
 
-This file serves as the primary orchestration layer for the ComfyUI LLM development guide.
+This is the central entry point for the ComfyUI LLM Rules Development Space. Protocols are split into two specialized domains to ensure the correct behavioral weight is applied to each task.
 
-## 🎯 Objective
-To provide high-performance, agent-optimized support for ComfyUI workflow execution, custom node development, and backend architecture.
+## 🚀 Choose Your Protocol
+Depending on your current task, load one of the following specialized contexts:
 
-## 🛠️ Modular Rule Orchestration
-The core logic of this system is distributed across modular rule files in `.agents/rules/`. 
+### 🛠️ [Development Mode](./DEVELOPMENT.md)
+**Focus:** Coding, Node Architecture, Frontend Development, Logic Execution.
+- *Use when:* Building new features, writing Python/JS, optimizing performance.
 
-### Priority Rules (Always Check)
-- `preflight-environment.md`: Hardware alignment and environment safety.
-- `discovery-protocol.md`: Search-first mandate and keyword extraction.
-- `coding-style.md`: Global coding standards.
+### 🛡️ [Support Mode](./SUPPORT.md)
+**Focus:** Troubleshooting, Environment Setup, Hardware Compatibility, Maintenance.
+- *Use when:* Fixing crashes, managing dependencies, configuring GPUs.
 
-### Specialized Protocols
-Depending on the user's request, load the relevant rules:
-- **Assets & Inputs:** `asset-auth.md`, `inputs-handling.md`, `workflow-sharing.md`
-- **Execution & Automation:** `task-routing.md`, `scaling-automation.md`
-- **Development:** `workflow-architecture.md`, `api-node-dev.md`, `frontend-litegraph-dev.md`
-- **Support:** `troubleshooting.md`, `dependency-management.md`, `security-hygiene.md`, `vendor-prompting.md`
+---
 
-## 🧠 Behavior Guidelines
-1. **Search First:** Always use `grep_search` or `list_dir` before proposing changes.
-2. **Token Efficiency:** Only load the rule files necessary for the current task.
-3. **Hardware Awareness:** Be strictly aware of the user's hardware (e.g., RTX 50-series/Blackwell) as defined in the preflight protocol.
+## 📂 Rule Architecture
+Rules are organized into the following resource directories:
+
+- **`.agents/coding/`**: Development standards, API structures, and logic protocols.
+- **`.agents/support/`**: Hardware checks, troubleshooting guides, and environment rules.
+- **`.agents/common/`**: General infrastructure rules (Discovery, Task Routing).
+
+## 🧠 Global Mandate
+1. **Resource Awareness:** The `.agents` directory contains **resources**, not active agents.
+2. **Search First:** Use `grep_search` or `list_dir` to find existing patterns before proposing changes.
+3. **Hardware Specificity:** All rules must account for Blackwell/RTX 50-series compute capabilities.
