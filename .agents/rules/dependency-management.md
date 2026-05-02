@@ -40,7 +40,24 @@ Unless explicitly required otherwise, prefer this "Safe Zone" configuration:
     1. **WIPE:** `rmdir /s /q .venv`.
     2. **REBUILD:** Re-install the Locked Set from explicit wheel URLs.
 
-## 6. STARTUP LOG AUDIT (ABI MISMATCH)
+## 6. WHEEL-FIRST & COMPILER VERIFICATION
+- **RULE:** **NEVER** recommend or attempt source builds (`pip install .`, `setup.py`, or compilation) unless:
+    1. No prebuilt wheel exists.
+    2. User explicitly requests a developer setup.
+    3. **VERIFIED:** Compiler toolchain is present (`cl.exe` for MSVC, `nvcc --version` for CUDA).
+- **ASSUMPTION (WINDOWS):** Assume **NO** Visual Studio, **NO** CMake, and **NO** CUDA Toolkit are installed until proven otherwise.
+- **ACTION:** Prioritize prebuilt wheels from official indices or trusted repositories (e.g., `download.pytorch.org`).
+
+## 7. GRACEFUL DEGRADATION (STABILITY > SPEED)
+- **PHILOSOPHY:** Working slowly is infinitely better than being broken fast.
+- **PROTOCOL:**
+    - **IF** an accelerator (SageAttention, xFormers, Triton) fails to install/load:
+        1. **ABANDON** the install attempt immediately.
+        2. **DEGRADE:** Disable the feature and fall back to standard **PyTorch SDPA**.
+        3. **VERIFY:** Ensure the server boots and generates without the accelerator.
+- **PRIORITY HIERARCHY:** 1. Stability -> 2. Reproducibility -> 3. Recoverability -> 4. Performance.
+
+## 8. STARTUP LOG AUDIT (ABI MISMATCH)
 - **SCAN:** Check startup logs for `undefined symbol` or `DLL load failed`.
 - **CAUSE:** ABI mismatch (usually SageAttention or xFormers compiled against a different Torch version).
 - **FIX:** Re-install the specific package matching the *exact* installed Torch version string.
