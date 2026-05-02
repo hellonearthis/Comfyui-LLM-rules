@@ -34,7 +34,7 @@ This workspace has been explicitly tuned for **Agentic RAG** and the Antigravity
 
 #### Troubleshooting & Vendor Specs
 
-- `troubleshooting.md` — OOM escalation paths, reading logs, and the Developer Escape hatch.
+- `troubleshooting.md` — Startup sequence analysis, DLL/Dependency debugging, OOM resolution, and the Developer Escape hatch.
 - `vendor-prompting.md` — The authoritative index of official vendor prompting URLs (Flux, Wan, LTX, etc.).
 
 #### Pro-Level Development & Architecture

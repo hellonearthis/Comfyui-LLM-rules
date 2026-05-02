@@ -12,6 +12,21 @@ description: Load this when diagnosing OOM errors, crashes, or when live server 
 - **REST API (LIVE):** `GET /internal/logs/raw` (JSON ring buffer).
 - **DAEMON LOG:** Read `~/.comfyui/comfyui.log`.
 
+## STARTUP SEQUENCE ANALYSIS
+- **BOOT SCAN:** Grep log for `[ERROR]` or `[FATAL]` within the first 100 lines.
+- **NODE IMPORT FAILURES:**
+    - Search for `Failed to import` or `Cannot find module`.
+    - **IF** `WinError 126` (Windows): **EXECUTE** `python -c "import os; print(os.environ['PATH'])"` to check for missing DLL paths (CUDA/Cudnn).
+- **VERSION MISMATCH:**
+    - Verify `Torch version` line matches `CUDA version` in `comfyui env check`.
+    - **IF** `xformers` fails to load: **VERIFY** it matches the exact Torch/CUDA build version.
+- **CONFLICTS:** Search for `Skipping [NodeName]` to find duplicate custom nodes.
+
+## DEPENDENCY & DLL DEBUGGING (WINDOWS)
+- **DLL PATH INJECTION:** **IF** `ImportError` on a C-extension:
+    - **USE** `os.add_dll_directory(path)` in the node's `__init__.py` if the dependency is in a non-standard location.
+- **UV VS PIP:** **ALWAYS USE** `uv pip` to avoid environment contamination. **EXECUTE** `uv pip compile` to resolve frozen dependency trees.
+
 ## DIAGNOSTIC TOOLING
 - **LOGIC TEST:** **EXECUTE** with `--novram` to verify if a crash is a logic error vs. VRAM allocation error.
 - **CAPACITY:** **EXECUTE** `--all --dry-run` to verify disk space before 100GB+ downloads.
