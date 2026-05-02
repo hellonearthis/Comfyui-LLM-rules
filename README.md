@@ -35,6 +35,7 @@ This workspace has been explicitly tuned for **Agentic RAG** and the Antigravity
 #### Troubleshooting & Vendor Specs
 
 - `troubleshooting.md` — Startup sequence analysis, DLL/Dependency debugging, OOM resolution, and the Developer Escape hatch.
+- `installation-troubleshooting.md` — Resolving Torch/CUDA/xFormers version hell, model path chaos, and environment confusion.
 - `vendor-prompting.md` — The authoritative index of official vendor prompting URLs (Flux, Wan, LTX, etc.).
 
 #### Pro-Level Development & Architecture
