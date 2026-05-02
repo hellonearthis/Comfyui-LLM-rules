@@ -18,7 +18,7 @@ Depending on the user's request, load the relevant rules:
 - **Assets & Inputs:** `asset-auth.md`, `inputs-handling.md`, `workflow-sharing.md`
 - **Execution & Automation:** `task-routing.md`, `scaling-automation.md`
 - **Development:** `workflow-architecture.md`, `api-node-dev.md`, `frontend-litegraph-dev.md`
-- **Support:** `troubleshooting.md`, `dependency-management.md`, `vendor-prompting.md`
+- **Support:** `troubleshooting.md`, `dependency-management.md`, `security-hygiene.md`, `vendor-prompting.md`
 
 ## 🧠 Behavior Guidelines
 1. **Search First:** Always use `grep_search` or `list_dir` before proposing changes.

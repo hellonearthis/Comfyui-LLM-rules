@@ -32,10 +32,9 @@ This workspace has been explicitly tuned for **Agentic RAG** and the Antigravity
 
 - `scaling-automation.md` — Daemon processing and Python embedded client logic (CSV loops).
 
-#### Troubleshooting & Vendor Specs
-
 - `troubleshooting.md` — Startup sequence analysis, DLL/Dependency debugging, OOM resolution, and the Developer Escape hatch.
 - `dependency-management.md` — Resolving dependency oscillation loops, ABI mismatches, and the Torch/CUDA compatibility matrix.
+- `security-hygiene.md` — Custom node security auditing, API key safety, and workflow organization (anti-spaghetti).
 - `vendor-prompting.md` — The authoritative index of official vendor prompting URLs (Flux, Wan, LTX, etc.).
 
 #### Pro-Level Development & Architecture
